@@ -1,0 +1,129 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.import React from 'react';
+import { FlatList, ActivityIndicator, Text, View  } from 'react-native';
+
+export default class FetchExample extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state ={ isLoading: true}
+  }
+
+  componentDidMount(){
+    return fetch('https://facebook.github.io/react-native/movies.json')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson.movies,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  import React from 'react';
+import { FlatList, ActivityIndicator, Text, View  } from 'react-native';
+
+export default class FetchExample extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state ={ isLoading: true}
+  }
+
+  componentDidMount(){
+    return fetch('https://facebook.github.io/react-native/movies.json')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson.movies,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+  }
+
+
+
+  render(){
+
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
+    return(
+      <View style={{flex: 1, paddingTop:20}}>
+        <FlatList
+          data={this.state.dataSource}
+          renderItem={({item}) => <Text>{item.title}, {item.releaseYear}</Text>}
+          keyExtractor={({id}, index) => id}
+        />
+      </View>
+    );
+  }
+}
+}
+
+
+
+  render(){
+
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
+    return(
+      <View style={{flex: 1, paddingTop:20}}>
+        <FlatList
+          data={this.state.dataSource}
+          renderItem={({item}) => <Text>{item.title}, {item.releaseYear}</Text>}
+          keyExtractor={({id}, index) => id}
+        />
+      </View>
+    );
+  }
+}
+
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+
+
+
+
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
